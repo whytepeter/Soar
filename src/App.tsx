@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
+import { ROUTES } from "./types/route";
 
 import Loading from "./components/base/Loading";
 import AppLayout from "./components/layout/AppLayout";
 
-import { ROUTES } from "./types/route";
 import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
+
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
       <AppLayout>
         <Routes>
           <Route path={ROUTES.Dashboard} element={<Dashboard />} />
-          <Route path={ROUTES.Settings} element={<Settings />} />
+          <Route path={`${ROUTES.Settings}/:tab`} element={<Settings />} />
 
           {/* Redirect for unknown routes */}
           <Route

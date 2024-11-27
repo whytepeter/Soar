@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import moment from "moment";
+import toast from "react-hot-toast";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -60,7 +61,7 @@ export const moveCenter = <T>(
 
 export const copyText = async (text: string, message: string = "Copied") => {
   await navigator.clipboard.writeText(text);
-  // toast(message);
+  toast(message);
 };
 
 export const initials = (name: string): string => {

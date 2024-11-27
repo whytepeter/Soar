@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 
 export interface TabsType {
   tabItems: TabItemsType[];
-  value: TabItemsType;
+  value: string;
   key?: keyof TabItemsType;
   className?: string;
   onTabChange: (item: TabItemsType) => void;
@@ -17,7 +17,7 @@ export default function Tabs({
   onTabChange,
 }: TabsType) {
   const renderItems = (item: TabItemsType): ReactNode => {
-    const isActive = value[key] === item[key];
+    const isActive = value === item[key];
     return <TabItems key={item[key]} item={item} isActive={isActive} />;
   };
 
@@ -30,7 +30,7 @@ export default function Tabs({
   };
 
   const tabStyle = cn(
-    "flex overflow-x-auto no-scrollbar items-center justify-evenly text-secondary-500 font-light text-sm",
+    "flex border-b gap-4 border-outline overflow-x-auto no-scrollbar items-center  text-secondary-500 font-light text-sm",
     className
   );
 
@@ -41,8 +41,8 @@ export default function Tabs({
           onClick={(e) => handleTabClick(e, item)}
           role="tab"
           key={item[key]}
-          aria-selected={value[key] === item[key]}
-          className="flex-1 relative overflow-hidden"
+          aria-selected={value === item[key]}
+          className=" relative overflow-hidden"
         >
           {renderItems(item)}
         </div>
@@ -67,7 +67,7 @@ export function TabItems({
     <>
       <div
         className={cn(
-          " border-b border-outline w-full font-medium whitespace-nowrap text-sm  flex items-center justify-center px-6 py-4 cursor-pointer hover:bg-background transition duration-300",
+          "  w-full font-medium whitespace-nowrap text-sm  flex items-center justify-center px-6 py-3 cursor-pointer hover:bg-background transition duration-300",
           isActive ? " bg-white  text-primary rounded-none " : "text-dark-200"
         )}
       >
