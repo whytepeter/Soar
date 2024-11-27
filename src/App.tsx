@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 
-import Loading from "./components/ui/loading";
+import Loading from "./components/ui/Loadings";
 import AppLayout from "./components/layout/AppLayout";
 
 import { ROUTES } from "./types/route";

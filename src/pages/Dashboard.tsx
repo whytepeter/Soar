@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/Bbutton";
+import { Input } from "@/components/ui/Inputs";
 import React from "react";
 
 export default function Dashboard() {
