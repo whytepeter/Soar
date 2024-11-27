@@ -1,5 +1,5 @@
 import { MenuItemsType } from "../base/MenuItem";
-import { ROUTES } from "@/types/route";
+import { ROUTES } from "@/routes";
 
 import homeIcon from "@/assets/icon/home.svg";
 import homeActiveIcon from "@/assets/icon/home-active.svg";

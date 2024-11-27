@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
-import { ROUTES } from "./types/route";
+import { ROUTES } from "./routes";
 
 import Loading from "./components/base/Loading";
 import AppLayout from "./components/layout/AppLayout";
@@ -15,6 +15,7 @@ import CreditCards from "./pages/CreditCards";
 import Loans from "./pages/Loans";
 import Services from "./pages/Services";
 import Privileges from "./pages/Privileges";
+
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {

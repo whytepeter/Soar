@@ -8,7 +8,7 @@ interface PropType {
 }
 
 export default function Spinner({
-  color = "primary",
+  color = "#232323",
   size = 20,
   width = 2.5,
   className,
