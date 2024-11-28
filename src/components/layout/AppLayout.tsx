@@ -5,12 +5,10 @@ import { setSidebarState } from "@/store/slices/configSlice";
 
 import AppNavbar from "./AppNavbar";
 import AppSidebar from "./AppSidebar";
+import { Outlet } from "react-router";
+import { Toaster } from "react-hot-toast";
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export default function AppLayout({ children }: Props) {
+export default function AppLayout() {
   const dispatch = useAppDispatch();
 
   const sidebarCollapsed = useAppSelector(
@@ -32,9 +30,20 @@ export default function AppLayout({ children }: Props) {
         <AppSidebar />
         <div className="relative min-h-screen">
           <AppNavbar />
-          <div className="w-full p-4 sm:px-8 sm:py-6">{children}</div>
+          <div className="w-full p-4 sm:px-8 sm:py-6">
+            <Outlet />
+          </div>
         </div>
       </main>
+
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            fontSize: 14,
+          },
+        }}
+      />
     </>
   );
 }

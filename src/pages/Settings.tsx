@@ -23,7 +23,7 @@ export default function Settings() {
   const navigate = useNavigate();
   const { tab } = useParams<{ tab: string }>();
 
-  // Render the appropriate component based on the current tab
+  // // Render the appropriate component based on the current tab
   const renderTabContent = (currentTab: string | undefined) => {
     switch (currentTab) {
       case TabSlug.PROFILE:
@@ -49,7 +49,6 @@ export default function Settings() {
         value={tab || TabSlug.PROFILE}
         onTabChange={handleTabChange}
       />
-      {/* Tab Content */}
       {renderTabContent(tab)}
     </Card>
   );

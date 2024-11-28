@@ -2,10 +2,10 @@ import { useAppDispatch } from "@/hooks";
 import { cn } from "@/lib/utils";
 import { toggleSidebar } from "@/store/slices/configSlice";
 import React from "react";
-import { ROUTES } from "@/routes";
 
 import Heading from "../typography/Heading";
 import { useLocation } from "react-router-dom";
+import { ROUTES } from "@/router/type";
 
 interface Props {
   className?: string;
