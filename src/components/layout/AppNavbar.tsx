@@ -51,7 +51,7 @@ export default function AppNavbar({ className }: Props) {
       >
         <img src={Hamburger} alt="Menu" />
       </Button>
-      <Heading>{currentPage}</Heading>
+      <Heading className="text-lg md:text-xl">{currentPage}</Heading>
 
       <div className="flex items-center gap-4 ">
         <div className="hidden md:flex items-center gap-4 ">
