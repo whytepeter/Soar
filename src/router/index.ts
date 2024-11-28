@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import { createBrowserRouter, RouteObject } from "react-router-dom";
+import { createBrowserRouter, redirect, RouteObject } from "react-router-dom";
 import AppLayout from "@/components/layout/AppLayout";
 import { ROUTES } from "./type";
 
@@ -42,8 +42,26 @@ export const routeConfig: RouteObject[] = [
         Component: lazy(() => import("@/pages/Privileges")),
       },
       {
-        path: `${ROUTES.Settings}/:tab`,
+        path: ROUTES.Settings,
         Component: lazy(() => import("@/pages/Settings")),
+        children: [
+          {
+            index: true,
+            loader: async () => redirect(`${ROUTES.Settings}/profile`),
+          },
+          {
+            path: "profile",
+            Component: lazy(() => import("@/components/settings/EditProfile")),
+          },
+          {
+            path: "security",
+            Component: lazy(() => import("@/components/settings/Security")),
+          },
+          {
+            path: "preferences",
+            Component: lazy(() => import("@/components/settings/Preferences")),
+          },
+        ],
       },
       {
         path: "*",

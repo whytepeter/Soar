@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { setSidebarState } from "@/store/slices/configSlice";
 
-import AppNavbar from "./AppNavbar";
-import AppSidebar from "./AppSidebar";
+import AppSidebar from "./sidebar/AppSidebar";
 import { Outlet } from "react-router";
 import { Toaster } from "react-hot-toast";
+import AppNavbar from "./AppNavbar";
 
 export default function AppLayout() {
   const dispatch = useAppDispatch();

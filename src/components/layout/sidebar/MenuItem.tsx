@@ -1,5 +1,8 @@
+import { useAppDispatch } from "@/hooks";
+import { toggleSidebar } from "@/store/slices/configSlice";
 import { cn } from "@/lib/utils";
 import { Link, useLocation } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export interface MenuItemsType {
   name: string;
@@ -16,6 +19,9 @@ interface Props {
 }
 
 export default function MenuItem({ collapse, item }: Props) {
+  const dispatch = useAppDispatch();
+  const isMobile = useIsMobile();
+
   const { icon, active, name, to, redirect } = item;
   const location = useLocation();
 
@@ -24,9 +30,14 @@ export default function MenuItem({ collapse, item }: Props) {
       ? location.pathname === to // Strict match for Dashboard
       : location.pathname.startsWith(to); // Match all subroutes for others
 
+  const closeMobileSidebar = () => {
+    if (isMobile) dispatch(toggleSidebar());
+  };
+
   return (
     <Link
       to={redirect || to}
+      onClick={closeMobileSidebar}
       className={cn(
         " relative flex items-center gap-4  px-6 py-2 text-sm  duration-500",
         isActive ? "text-primary" : "text-dark-100"

@@ -3,8 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputType extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
   append?: React.ReactNode;
   prepend?: React.ReactNode;
@@ -12,7 +11,7 @@ export interface InputProps
   appendClick?: () => void;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const Input = React.forwardRef<HTMLInputElement, InputType>(
   (
     {
       className,
@@ -42,7 +41,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const inputStyles = cn(
       props?.disabled && "cursor-not-allowed opacity-50",
-      "flex-1  h-full focus:outline-none block appearance-none bg-transparent text-base md:text-sm disabled:cursor-not-allowed"
+      "flex-1 placeholder:text-dark-200  h-full focus:outline-none block appearance-none bg-transparent text-base md:text-sm disabled:cursor-not-allowed"
     );
 
     return (

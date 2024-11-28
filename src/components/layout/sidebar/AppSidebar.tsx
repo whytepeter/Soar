@@ -2,10 +2,9 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { toggleSidebar } from "@/store/slices/configSlice";
-import React from "react";
-import AppLogo from "./AppLogo";
+import AppLogo from "../AppLogo";
 import { SIDEBAR_ITEMS } from "./sidebar";
-import MenuItem from "../base/MenuItem";
+import MenuItem from "./MenuItem";
 
 interface Props {
   className?: string;
@@ -21,7 +20,7 @@ export default function AppSidebar({ className }: Props) {
 
   const sidebarClass = cn(
     isMobile && !sidebarCollapsed ? "open" : "",
-    "sidebar sidebar-mobile fixed border-r border-outline left-0 top-0 bg-white min-h-screen transition-all ease-in-out duration-200  overflow-hidden",
+    "sidebar sidebar-mobile z-40 fixed border-r border-outline left-0 top-0 bg-white min-h-screen transition-all ease-in-out duration-200  overflow-hidden",
     className
   );
 

@@ -1,41 +1,21 @@
 import Card from "@/components/base/Card";
 import Tabs, { TabItemsType } from "@/components/base/Tabs";
-import EditProfile from "@/components/settings/EditProfile";
-import Preferences from "@/components/settings/Preferences";
-import Security from "@/components/settings/Security";
 
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 
-enum TabSlug {
-  PROFILE = "profile",
-  PREFERENCES = "preferences",
-  SECURITY = "security",
-}
-
-// Tab items configuration
 const tabItems: TabItemsType[] = [
-  { title: "Edit Profile", slug: TabSlug.PROFILE },
-  { title: "Preferences", slug: TabSlug.PREFERENCES },
-  { title: "Security", slug: TabSlug.SECURITY },
+  { title: "Profile", slug: "profile" },
+  { title: "Security", slug: "security" },
+  { title: "Preferences", slug: "preferences" },
 ];
 
 export default function Settings() {
   const navigate = useNavigate();
-  const { tab } = useParams<{ tab: string }>();
 
-  // // Render the appropriate component based on the current tab
-  const renderTabContent = (currentTab: string | undefined) => {
-    switch (currentTab) {
-      case TabSlug.PROFILE:
-        return <EditProfile />;
-      case TabSlug.PREFERENCES:
-        return <Preferences />;
-      case TabSlug.SECURITY:
-        return <Security />;
-      default:
-        return <EditProfile />; // Default to 'Edit Profile'
-    }
-  };
+  const currentPath = location.pathname.split("/").pop(); // Get the last segment of the URL
+  const activeTab = tabItems.some((tab) => tab.slug === currentPath)
+    ? currentPath
+    : tabItems[0].slug;
 
   // Handle tab changes
   const handleTabChange = (newTab: TabItemsType) => {
@@ -46,10 +26,10 @@ export default function Settings() {
     <Card>
       <Tabs
         tabItems={tabItems}
-        value={tab || TabSlug.PROFILE}
+        value={activeTab ?? "profile"}
         onTabChange={handleTabChange}
       />
-      {renderTabContent(tab)}
+      <Outlet />
     </Card>
   );
 }
