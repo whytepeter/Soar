@@ -1,7 +1,7 @@
+import { Skeleton } from "../ui/skeleton";
+
 export default function CardLoading() {
   return (
-    <div className="w-full min-w-[350px] h-[250px] border rounded-[25px] bg-white">
-      CardLoading
-    </div>
+    <Skeleton className="w-full min-w-[350px] h-[250px]  rounded-[25px]" />
   );
 }
