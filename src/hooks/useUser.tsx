@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from ".";
 import { getUser, updateUser } from "@/lib/api/user";
 import { getUserCards } from "@/lib/api/cards";
 import { UserDetails } from "@/types";
-import { CreditCards } from "@/components/dashboard/cards/CreditCard";
+import { CreditCards } from "@/components/credit-card/CreditCard";
 
 interface Props {
   user: UserDetails | null;

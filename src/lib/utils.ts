@@ -82,3 +82,24 @@ export const generateUniqueId = (length: number = 10): string => {
     .toString(36)
     .substring(2, length + 2);
 };
+
+export const maskCreditCardNumber = (cardNumber: string): string => {
+  if (typeof cardNumber !== "string") {
+    throw new Error("Input must be a string");
+  }
+
+  // Remove spaces for consistent masking
+  const cleanNumber = cardNumber.replace(/\s+/g, "");
+
+  // Validate input
+  if (!/^\d{12,19}$/.test(cleanNumber)) {
+    throw new Error("Invalid credit card number format");
+  }
+
+  // Mask the middle digits
+  const maskedNumber = `${cleanNumber.slice(
+    0,
+    4
+  )} **** **** ${cleanNumber.slice(-4)}`;
+  return maskedNumber;
+};

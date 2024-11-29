@@ -6,6 +6,19 @@
   background: linear-gradient(121deg, rgba(91,90,111,1) 27%, rgba(0,0,0,1) 100%);
 }
 
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+
 /* For Webkit-based browsers (Chrome, Safari, Edge) */
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {

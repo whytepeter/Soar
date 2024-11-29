@@ -6,6 +6,7 @@ interface ErrorBoundaryProps {
 
 interface ErrorBoundaryState {
   hasError: boolean;
+  errorMessage: string | null;
 }
 
 class ErrorBoundary extends React.Component<
@@ -14,26 +15,37 @@ class ErrorBoundary extends React.Component<
 > {
   constructor(props: ErrorBoundaryProps) {
     super(props);
-    this.state = { hasError: false };
+    this.state = {
+      hasError: false,
+      errorMessage: null,
+    };
   }
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  static getDerivedStateFromError(error: Error) {
+    // Update state to indicate an error has occurred
+    return { hasError: true, errorMessage: error.message };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    // Log error details for debugging
     console.error("ErrorBoundary caught an error:", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
       return (
-        <h1 className="text-xl  text-center font-light text-primary flex flex-col">
+        <div className="text-xl text-center font-light text-primary flex flex-col">
           <span className="text-2xl">😔</span>
-          Something went wrong.
-        </h1>
+          <p>Something went wrong.</p>
+          {this.state.errorMessage && (
+            <p className="text-sm text-red-500 mt-2">
+              Error: {this.state.errorMessage}
+            </p>
+          )}
+        </div>
       );
     }
+
     return this.props.children;
   }
 }
