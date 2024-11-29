@@ -1,5 +1,4 @@
 import Avatar from "@/components/base/Avatar";
-import UserPfp from "@/assets/img/avatar.png";
 import Pencil from "@/assets/icon/edit.svg";
 import { Button } from "@/components/base/Button";
 import { cn, initials } from "@/lib/utils";
@@ -38,11 +37,11 @@ export default function UserProfile({ edit = false, className }: Props) {
             <img
               src={selectedImage}
               className="w-full h-full object-cover"
-              alt="John Doe"
+              alt={userDetails?.full_name}
             />
           ) : (
             <span className="font-semibold text-xl">
-              {initials("John Doe")}
+              {initials(userDetails?.full_name)}
             </span>
           )}
         </Avatar>

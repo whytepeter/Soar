@@ -38,6 +38,11 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    // Set the entire state
+    setUser: (state, action: PayloadAction<UserDetails>) => {
+      state.userDetails = action.payload;
+    },
+
     // Update multiple user details
     editUser: (state, action: PayloadAction<Partial<UserDetails>>) => {
       if (state.userDetails) {
@@ -50,12 +55,8 @@ const userSlice = createSlice({
         state.userDetails.pfp = action.payload;
       }
     },
-    // Remove user
-    removeUser: (state) => {
-      state.userDetails = null;
-    },
   },
 });
 
-export const { editUser, updateProfilePicture, removeUser } = userSlice.actions;
+export const { editUser, updateProfilePicture, setUser } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
@@ -41,7 +40,7 @@ const Input = React.forwardRef<HTMLInputElement, InputType>(
 
     const inputStyles = cn(
       props?.disabled && "cursor-not-allowed opacity-50",
-      "flex-1 placeholder:text-dark-200 text-dark-200  h-full focus:outline-none block appearance-none bg-transparent text-base md:text-sm disabled:cursor-not-allowed"
+      "flex-1 appearance-none placeholder:text-dark-200 text-dark-200  h-full focus:outline-none block appearance-none bg-transparent text-base md:text-sm disabled:cursor-not-allowed"
     );
 
     return (

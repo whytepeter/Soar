@@ -1,0 +1,20 @@
+
+
+/* For Webkit-based browsers (Chrome, Safari, Edge) */
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+/* For Firefox */
+input[type="date"] {
+  -moz-appearance: textfield; /* Hides the dropdown icon */
+}
+
+/* General appearance reset */
+input[type="date"] {
+  appearance: none; /* Resets any other browser styling */
+}
+
+@import "./layout.scss";

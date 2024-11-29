@@ -64,8 +64,8 @@ export const copyText = async (text: string, message: string = "Copied") => {
   toast(message);
 };
 
-export const initials = (name: string): string => {
-  if (!name) return "N/A";
+export const initials = (name?: string): string => {
+  if (!name) return "--";
 
   // Split the name into parts
   const parts = name.trim().split(/\s+/);
