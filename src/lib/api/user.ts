@@ -1,4 +1,4 @@
-import { UserDetails } from "@/store/slices/userSlice";
+import { UserDetails } from "@/types";
 
 const mockUserDatabase: UserDetails = {
   id: "123",
@@ -8,7 +8,8 @@ const mockUserDatabase: UserDetails = {
   password: "password123",
   postal_code: "12345",
   city: "New York",
-  country: "USA",
+  dob: "2000-11-21",
+  country: "United States of America",
   permanent_address: "123 Permanent St.",
   present_address: "456 Present Ave.",
   pfp: null,
@@ -57,6 +58,6 @@ export const getUser = async (): Promise<{
           message: "User not found.",
         });
       }
-    }, 500); // Simulate API delay
+    }, 1000);
   });
 };

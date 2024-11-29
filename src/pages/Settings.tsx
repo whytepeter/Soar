@@ -1,5 +1,7 @@
 import Card from "@/components/base/Card";
 import Tabs, { TabItemsType } from "@/components/base/Tabs";
+import { useUser } from "@/hooks/useUser";
+import { useEffect } from "react";
 
 import { useNavigate, Outlet } from "react-router-dom";
 
@@ -11,16 +13,20 @@ const tabItems: TabItemsType[] = [
 
 export default function Settings() {
   const navigate = useNavigate();
+  const { fetchUser } = useUser();
 
   const currentPath = location.pathname.split("/").pop(); // Get the last segment of the URL
   const activeTab = tabItems.some((tab) => tab.slug === currentPath)
     ? currentPath
     : tabItems[0].slug;
 
-  // Handle tab changes
   const handleTabChange = (newTab: TabItemsType) => {
     navigate(`/settings/${newTab.slug}`);
   };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <Card className="space-y-4">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "@/hooks";
 
 import { Button } from "@/components/base/Button";
@@ -16,24 +16,25 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EditProfileSchema } from "@/schema/settings";
 import { COUNTRIES } from "@/lib/constant";
+import { useUser } from "@/hooks/useUser";
 
 export default function EditProfile() {
   const [loading, setLoading] = useState(false);
-  const userDetails = useAppSelector((state) => state.user.userDetails);
+  const { user, updateUserDetails } = useUser();
 
   const form = useForm<z.infer<typeof EditProfileSchema>>({
     resolver: zodResolver(EditProfileSchema),
     defaultValues: {
-      full_name: userDetails?.full_name || "",
-      email: userDetails?.email || "",
-      user_name: userDetails?.user_name || "",
-      password: userDetails?.password || "",
-      postal_code: userDetails?.postal_code || "",
-      dob: userDetails?.dob || "",
-      city: userDetails?.city || "",
-      country: userDetails?.country || "",
-      permanent_address: userDetails?.permanent_address || "",
-      present_address: userDetails?.present_address || "",
+      full_name: user?.full_name || "",
+      email: user?.email || "",
+      user_name: user?.user_name || "",
+      password: user?.password || "",
+      postal_code: user?.postal_code || "",
+      dob: user?.dob || "",
+      city: user?.city || "",
+      country: user?.country || "",
+      permanent_address: user?.permanent_address || "",
+      present_address: user?.present_address || "",
     },
   });
 
@@ -61,18 +62,31 @@ export default function EditProfile() {
 
   async function onSubmit(values: z.infer<typeof EditProfileSchema>) {
     try {
-      console.log(values);
       setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        toast.success("Profile updated successfully");
-      }, 3000);
+      await updateUserDetails(values);
     } catch (error: any) {
       toast.error(error?.message || "Error occured");
     } finally {
-      // setLoading(false);
+      setLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      form.reset({
+        full_name: user?.full_name || "",
+        email: user?.email || "",
+        user_name: user?.user_name || "",
+        password: user?.password || "",
+        postal_code: user?.postal_code || "",
+        dob: user?.dob || "",
+        city: user?.city || "",
+        country: user?.country || "",
+        permanent_address: user?.permanent_address || "",
+        present_address: user?.present_address || "",
+      });
+    }
+  }, [user, form]);
 
   return (
     <div className="md:px-6 py-6 w-full flex items-center md:items-start md flex-col md:flex-row gap-4 md:gap-14">

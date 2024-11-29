@@ -6,7 +6,7 @@ import { cn, initials } from "@/lib/utils";
 import { Input } from "../base/Input";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { updateProfilePicture } from "@/store/slices/userSlice";
+import { editUser } from "@/store/slices/userSlice";
 
 interface Props {
   edit?: boolean;
@@ -22,8 +22,8 @@ export default function UserProfile({ edit = false, className }: Props) {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        const result = reader.result as string;
-        dispatch(updateProfilePicture(result));
+        const pfp = reader.result as string;
+        dispatch(editUser({ pfp }));
       };
       reader.readAsDataURL(file);
     }
