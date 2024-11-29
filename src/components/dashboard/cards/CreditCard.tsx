@@ -63,7 +63,9 @@ export default function CreditCard({
 
       <div
         className={cn(
-          isActive ? "bg-white/20" : "border-t border-outline",
+          isActive
+            ? "bg-gradient-to-r from-white/10 to-white/30"
+            : "border-t border-outline",
           "p-6 flex items-center gap-4 justify-between"
         )}
       >
