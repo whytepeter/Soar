@@ -1,19 +1,20 @@
 import { useState } from "react";
-import { Button } from "../base/Button";
-import { Input } from "../base/Input";
+import { useAppSelector } from "@/hooks";
+
+import { Button } from "@/components/base/Button";
+import { Input } from "@/components/base/Input";
+import SelectInput from "@/components/base/SelectInput";
 import UserProfile from "./UserProfle";
+import DateInput from "@/components/base/DateInput";
+import Show from "@/components/base/Show";
+
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
 import toast from "react-hot-toast";
-import { useAppSelector } from "@/hooks";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EditProfileSchema } from "@/schema/settings";
-
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import DateInput from "../base/DateInput";
-import Show from "../base/Show";
-import SelectInput from "../base/SelectInput";
 import { COUNTRIES } from "@/lib/constant";
 
 export default function EditProfile() {

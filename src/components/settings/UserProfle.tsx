@@ -1,10 +1,12 @@
 import Avatar from "@/components/base/Avatar";
 import Pencil from "@/assets/icon/edit.svg";
+
 import { Button } from "@/components/base/Button";
 import { cn, initials } from "@/lib/utils";
 import { Input } from "../base/Input";
-import { useAppSelector } from "@/hooks";
-import { useState } from "react";
+
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { updateProfilePicture } from "@/store/slices/userSlice";
 
 interface Props {
   edit?: boolean;
@@ -12,10 +14,8 @@ interface Props {
 }
 
 export default function UserProfile({ edit = false, className }: Props) {
+  const dispatch = useAppDispatch();
   const userDetails = useAppSelector((state) => state.user.userDetails);
-  const [selectedImage, setSelectedImage] = useState<string | null>(
-    userDetails?.pfp || null
-  );
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -23,7 +23,7 @@ export default function UserProfile({ edit = false, className }: Props) {
       const reader = new FileReader();
       reader.onload = () => {
         const result = reader.result as string;
-        setSelectedImage(result);
+        dispatch(updateProfilePicture(result));
       };
       reader.readAsDataURL(file);
     }
@@ -33,14 +33,14 @@ export default function UserProfile({ edit = false, className }: Props) {
     <>
       <div className="w-fit relative ">
         <Avatar className={cn("w-20 h-20  ", className)}>
-          {selectedImage ? (
+          {userDetails?.pfp ? (
             <img
-              src={selectedImage}
+              src={userDetails?.pfp}
               className="w-full h-full object-cover"
               alt={userDetails?.full_name}
             />
           ) : (
-            <span className="font-semibold text-xl">
+            <span className="font-semibold text-lg">
               {initials(userDetails?.full_name)}
             </span>
           )}
