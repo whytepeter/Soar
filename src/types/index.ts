@@ -12,13 +12,3 @@ export interface UserDetails {
   present_address: string;
   pfp: string | null;
 }
-
-export interface CreditCards {
-  id: string;
-  cardHolderName: string;
-  cardNumber: string;
-  expiryDate: string;
-  cardType: string;
-  balance: number;
-  isActive: boolean;
-}

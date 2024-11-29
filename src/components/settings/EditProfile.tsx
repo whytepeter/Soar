@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useAppSelector } from "@/hooks";
 
 import { Button } from "@/components/base/Button";
 import { Input } from "@/components/base/Input";
@@ -57,7 +56,7 @@ export default function EditProfile() {
     { name: "permanent_address", label: "Permanent Address", type: "text" },
     { name: "city", label: "City", type: "text" },
     { name: "postal_code", label: "Postal Code", type: "numeric" },
-    { name: "country", label: "Country", type: "text", options: COUNTRIES },
+    { name: "country", label: "Country", type: "select", options: COUNTRIES },
   ];
 
   async function onSubmit(values: z.infer<typeof EditProfileSchema>) {
@@ -124,7 +123,7 @@ export default function EditProfile() {
                             {...field}
                           />
                         </Show.When>
-                        <Show.When isTrue={name === "country"}>
+                        <Show.When isTrue={type === "select"}>
                           <SelectInput
                             options={options ?? []}
                             disabled={loading}

@@ -14,11 +14,11 @@ export const formatNumber = (num: number) => {
 
 export const formatCurrency = (amount: number) => {
   if (isNaN(amount) || amount === 0) {
-    return "₦0.00";
+    return "$0.00";
   }
-  return amount.toLocaleString("en-NG", {
+  return amount.toLocaleString("en-US", {
     style: "currency",
-    currency: "NGN",
+    currency: "USD",
   });
 };
 

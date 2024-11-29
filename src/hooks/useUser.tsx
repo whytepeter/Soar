@@ -1,12 +1,15 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { editUser, setUserState } from "@/store/slices/userSlice";
 import { useAppDispatch, useAppSelector } from ".";
 import { getUser, updateUser } from "@/lib/api/user";
 import { getUserCards } from "@/lib/api/cards";
 import { UserDetails } from "@/types";
+import { CreditCards } from "@/components/dashboard/cards/CreditCard";
 
 interface Props {
   user: UserDetails | null;
+  cards: CreditCards[];
+  loading: boolean;
   fetchUser: () => Promise<void>;
   fetchUserCards: () => Promise<void>;
   updateUserDetails: (userData: Partial<UserDetails>) => Promise<void>;
@@ -15,10 +18,14 @@ interface Props {
 export const useUser = (): Props => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user.userDetails);
+  const cards = useAppSelector((state) => state.user.cards);
+
+  const [loading, setLoading] = useState(false);
 
   // Fetch user details
   const fetchUser = useCallback(async () => {
     try {
+      setLoading(true);
       const response = await getUser();
       if (response.success) {
         dispatch(setUserState({ userDetails: response.data }));
@@ -27,6 +34,8 @@ export const useUser = (): Props => {
       }
     } catch (err) {
       throw err;
+    } finally {
+      setLoading(false);
     }
   }, [dispatch]);
 
@@ -34,6 +43,7 @@ export const useUser = (): Props => {
   const updateUserDetails = useCallback(
     async (userData: Partial<UserDetails>) => {
       try {
+        setLoading(true);
         const response = await updateUser(userData);
         if (response.success) {
           dispatch(editUser(response.data));
@@ -42,6 +52,8 @@ export const useUser = (): Props => {
         }
       } catch (err) {
         throw err;
+      } finally {
+        setLoading(false);
       }
     },
     [dispatch]
@@ -50,6 +62,7 @@ export const useUser = (): Props => {
   //Fetch user card details
   const fetchUserCards = useCallback(async () => {
     try {
+      setLoading(true);
       const response = await getUserCards();
       if (response.success) {
         dispatch(setUserState({ cards: response.data }));
@@ -58,11 +71,15 @@ export const useUser = (): Props => {
       }
     } catch (err) {
       throw err;
+    } finally {
+      setLoading(false);
     }
   }, [dispatch]);
 
   return {
     user,
+    cards,
+    loading,
     fetchUser,
     updateUserDetails,
     fetchUserCards,
