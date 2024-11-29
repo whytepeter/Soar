@@ -7,6 +7,7 @@ export interface UserDetails {
   user_name: string;
   password: string;
   postal_code: string;
+  dob: string;
   city: string;
   country: string;
   permanent_address: string;
@@ -27,7 +28,8 @@ const initialState: UserState = {
     password: "password123",
     postal_code: "12345",
     city: "New York",
-    country: "USA",
+    dob: "2000-11-21",
+    country: "United States of America",
     permanent_address: "123 Permanent St.",
     present_address: "456 Present Ave.",
     pfp: null,

@@ -12,6 +12,9 @@ import { EditProfileSchema } from "@/schema/settings";
 
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import DateInput from "../base/DateInput";
+import Show from "../base/Show";
+import SelectInput from "../base/SelectInput";
+import { COUNTRIES } from "@/lib/constant";
 
 export default function EditProfile() {
   const [loading, setLoading] = useState(false);
@@ -25,6 +28,7 @@ export default function EditProfile() {
       user_name: userDetails?.user_name || "",
       password: userDetails?.password || "",
       postal_code: userDetails?.postal_code || "",
+      dob: userDetails?.dob || "",
       city: userDetails?.city || "",
       country: userDetails?.country || "",
       permanent_address: userDetails?.permanent_address || "",
@@ -36,6 +40,7 @@ export default function EditProfile() {
     name: keyof z.infer<typeof EditProfileSchema>; // Restrict names to schema keys
     label: string;
     type: string;
+    options?: string[];
   }[] = [
     { name: "full_name", label: "Your Name", type: "text" },
     { name: "user_name", label: "User Name", type: "text" },
@@ -50,17 +55,21 @@ export default function EditProfile() {
     { name: "permanent_address", label: "Permanent Address", type: "text" },
     { name: "city", label: "City", type: "text" },
     { name: "postal_code", label: "Postal Code", type: "numeric" },
-    { name: "country", label: "Country", type: "text" },
+    { name: "country", label: "Country", type: "text", options: COUNTRIES },
   ];
 
   async function onSubmit(values: z.infer<typeof EditProfileSchema>) {
     try {
-      setLoading(true);
       console.log(values);
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+        toast.success("Profile updated successfully");
+      }, 3000);
     } catch (error: any) {
       toast.error(error?.message || "Error occured");
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   }
 
@@ -77,7 +86,7 @@ export default function EditProfile() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-x-6 text-dark"
         >
-          {fields.map(({ name, label, type }) => (
+          {fields.map(({ name, label, type, options }) => (
             <FormField
               key={name}
               control={form.control}
@@ -89,24 +98,39 @@ export default function EditProfile() {
                       <label className="text-sm" htmlFor={name}>
                         {label}
                       </label>
-                      {type === "date" ? (
-                        <DateInput
-                          disabled={loading}
-                          id={name}
-                          type={type}
-                          error={error ? String(error.message) : ""}
-                          {...field}
-                        />
-                      ) : (
-                        <Input
-                          disabled={loading}
-                          id={name}
-                          type={type}
-                          inputMode={type === "numeric" ? "numeric" : undefined}
-                          error={error ? String(error.message) : ""}
-                          {...field}
-                        />
-                      )}
+
+                      <Show>
+                        <Show.When isTrue={type === "date"}>
+                          <DateInput
+                            disabled={loading}
+                            id={name}
+                            type={type}
+                            error={error ? String(error.message) : ""}
+                            {...field}
+                          />
+                        </Show.When>
+                        <Show.When isTrue={name === "country"}>
+                          <SelectInput
+                            options={options ?? []}
+                            disabled={loading}
+                            id={name}
+                            error={error ? String(error.message) : ""}
+                            {...field}
+                          />
+                        </Show.When>
+                        <Show.Else>
+                          <Input
+                            disabled={loading}
+                            id={name}
+                            type={type}
+                            inputMode={
+                              type === "numeric" ? "numeric" : undefined
+                            }
+                            error={error ? String(error.message) : ""}
+                            {...field}
+                          />
+                        </Show.Else>
+                      </Show>
                     </div>
                   </FormControl>
                 </FormItem>

@@ -31,7 +31,7 @@ export default function UserProfile({ edit = false, className }: Props) {
 
   return (
     <>
-      <div className="w-20 h-20 relative ">
+      <div className="w-fit relative ">
         <Avatar className={cn("w-20 h-20  ", className)}>
           {selectedImage ? (
             <img
