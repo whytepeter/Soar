@@ -1,5 +1,8 @@
+import { Transaction } from "@/types";
+import { getRandomValue } from "../utils";
+
 // Mock database for transactions
-const mockTransactions = [
+const mockTransactions: Transaction[] = [
   {
     id: "1",
     description: "Deposit from my Card",
@@ -95,7 +98,7 @@ const mockTransactions = [
 // Mock API to get user transactions
 export const getTransactions = async (): Promise<{
   success: boolean;
-  data: typeof mockTransactions;
+  data: Transaction[];
 }> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -110,6 +113,86 @@ export const getTransactions = async (): Promise<{
           message: "No transactions found.",
         });
       }
-    }, 500); // Simulate API delay
+    }, 1000);
+  });
+};
+
+// Mock API for daily transaction data for the current week
+export const getActivitiesChart = async (): Promise<{
+  success: boolean;
+  data: { day: string; deposit: number; withdrawal: number }[];
+}> => {
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  const data = daysOfWeek.map((day) => ({
+    day,
+    deposit: getRandomValue(50, 500), // Random deposit value
+    withdrawal: getRandomValue(20, 300), // Random withdrawal value
+  }));
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ success: true, data });
+    }, 1000);
+  });
+};
+
+// Mock API for monthly balance history for the current year
+export const getBalanceHistory = async (): Promise<{
+  success: boolean;
+  data: { month: string; balance: number }[];
+}> => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const currentMonth = new Date().getMonth() + 1; // 0-based month
+  const data = months.slice(0, currentMonth).map((month, index) => ({
+    month,
+    balance: getRandomValue(1000, 10000) + index * 200, // Incrementally increasing balance
+  }));
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ success: true, data });
+    }, 1000);
+  });
+};
+
+// Mock API for expense statistics
+export const getExpenseStats = async (): Promise<{
+  success: boolean;
+  data: { category: string; percentage: number }[];
+}> => {
+  const data = [
+    { category: "Entertainment", percentage: 30 },
+    { category: "Investment", percentage: 20 },
+    { category: "Bill Expense", percentage: 15 },
+    { category: "Other", percentage: 35 },
+  ];
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ success: true, data });
+    }, 1000);
   });
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "./Button";
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -31,6 +32,11 @@ class ErrorBoundary extends React.Component<
     console.error("ErrorBoundary caught an error:", error, errorInfo);
   }
 
+  handleRefresh = () => {
+    // Reload the page
+    window.location.reload();
+  };
+
   render() {
     if (this.state.hasError) {
       return (
@@ -42,6 +48,10 @@ class ErrorBoundary extends React.Component<
               Error: {this.state.errorMessage}
             </p>
           )}
+
+          <Button className="w-28 mx-auto mt-3" onClick={this.handleRefresh}>
+            Refresh
+          </Button>
         </div>
       );
     }

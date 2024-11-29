@@ -14,12 +14,17 @@ export const formatNumber = (num: number) => {
 
 export const formatCurrency = (amount: number) => {
   if (isNaN(amount) || amount === 0) {
-    return "$0.00";
+    return "$0";
   }
-  return amount.toLocaleString("en-US", {
+
+  const options: Intl.NumberFormatOptions = {
     style: "currency",
     currency: "USD",
-  });
+    minimumFractionDigits: amount % 1 === 0 ? 0 : 2, // Show decimals only if needed
+    maximumFractionDigits: 2, // Limit to 2 decimal places
+  };
+
+  return amount.toLocaleString("en-US", options);
 };
 
 export const formatDate = (
@@ -102,4 +107,9 @@ export const maskCreditCardNumber = (cardNumber: string): string => {
     4
   )} **** **** ${cleanNumber.slice(-4)}`;
   return maskedNumber;
+};
+
+// Utility to generate random values within a range
+export const getRandomValue = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };

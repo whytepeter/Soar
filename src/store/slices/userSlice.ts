@@ -1,5 +1,4 @@
-import { CreditCards } from "./../../types/index";
-import { UserDetails } from "@/types";
+import { UserDetails, CreditCards } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {

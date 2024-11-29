@@ -5,16 +5,7 @@ import CardMarkLight from "@/assets/icon/card-mark-light.svg";
 
 import CardChipDark from "@/assets/img/card-chip-dark.png";
 import CardChipLight from "@/assets/img/card-chip-light.png";
-
-export interface CreditCards {
-  id: string;
-  cardHolderName: string;
-  cardNumber: string;
-  expiryDate: string;
-  cardType: string;
-  balance: number;
-  isActive: boolean;
-}
+import { CreditCards } from "@/types";
 
 export default function CreditCard({
   isActive,

@@ -2,7 +2,7 @@ import Activity from "@/components/dashboard/Activity";
 import BalanceHistory from "@/components/dashboard/BalanceHistory";
 import ListCreditCards from "@/components/credit-card/MyCards";
 import ExpenseStats from "@/components/dashboard/ExpenseStats";
-import RecentTransaction from "@/components/dashboard/transactions/RecentTransaction";
+import RecentTransaction from "@/components/transactions/RecentTransaction";
 import QuickTransfer from "@/components/dashboard/transfer/QuickTransfer";
 
 export default function Dashboard() {

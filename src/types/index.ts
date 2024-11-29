@@ -12,3 +12,23 @@ export interface UserDetails {
   present_address: string;
   pfp: string | null;
 }
+
+export interface CreditCards {
+  id: string;
+  cardHolderName: string;
+  cardNumber: string;
+  expiryDate: string;
+  cardType: string;
+  balance: number;
+  isActive: boolean;
+}
+
+export interface Transaction {
+  id: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  method: "CARD" | "PAYPAL" | "TRANSFER";
+  type: "CREDIT" | "DEBIT";
+  amount: number;
+}
