@@ -30,6 +30,7 @@ export default function Settings() {
         onTabChange={handleTabChange}
         className="justify-evenly md:justify-start"
       />
+
       <Outlet />
     </Card>
   );

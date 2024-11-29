@@ -7,6 +7,7 @@ import AppSidebar from "./sidebar/AppSidebar";
 import { Outlet } from "react-router";
 import { Toaster } from "react-hot-toast";
 import AppNavbar from "./AppNavbar";
+import ErrorBoundary from "../base/ErrorBoundary";
 
 export default function AppLayout() {
   const dispatch = useAppDispatch();
@@ -21,7 +22,7 @@ export default function AppLayout() {
   }, [isMedium]);
 
   return (
-    <>
+    <ErrorBoundary>
       <main
         className={`${
           sidebarCollapsed ? "collapsed" : ""
@@ -31,7 +32,9 @@ export default function AppLayout() {
         <div className="relative min-h-screen">
           <AppNavbar />
           <div className="w-full p-4 sm:px-8 sm:py-6">
-            <Outlet />
+            <ErrorBoundary>
+              <Outlet />
+            </ErrorBoundary>
           </div>
         </div>
       </main>
@@ -44,6 +47,6 @@ export default function AppLayout() {
           },
         }}
       />
-    </>
+    </ErrorBoundary>
   );
 }
