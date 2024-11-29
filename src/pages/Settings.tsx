@@ -23,11 +23,12 @@ export default function Settings() {
   };
 
   return (
-    <Card>
+    <Card className="space-y-4">
       <Tabs
         tabItems={tabItems}
         value={activeTab ?? "profile"}
         onTabChange={handleTabChange}
+        className="justify-evenly md:justify-start"
       />
       <Outlet />
     </Card>

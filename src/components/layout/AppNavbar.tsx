@@ -8,12 +8,12 @@ import { useCallback } from "react";
 import Hamburger from "@/assets/icon/hamburger.svg";
 import Setting from "@/assets/icon/settings-2.svg";
 import Notification from "@/assets/icon/notification.svg";
-import UserProfile from "@/assets/img/avatar.png";
 
 import Heading from "@/components/typography/Heading";
 import { Button } from "@/components/base/Button";
 import Search from "@/components/base/Search";
 import Avatar from "@/components/base/Avatar";
+import UserProfile from "../settings/UserProfle";
 
 interface Props {
   className?: string;
@@ -58,19 +58,14 @@ export default function AppNavbar({ className }: Props) {
           <Search onSearch={handleSearch} />
 
           <Avatar onClick={() => navigate(ROUTES.Settings)}>
-            <img
-              className="w-[1.2rem]"
-              src={Setting}
-              alt="Settings"
-              loading="lazy"
-            />
+            <img src={Setting} alt="Settings" loading="lazy" />
           </Avatar>
           <Avatar>
-            <img className="w-[1.2rem]" src={Notification} alt="notification" />
+            <img src={Notification} alt="notification" />
           </Avatar>
         </div>
 
-        <Avatar img={UserProfile}></Avatar>
+        <UserProfile className="w-12 h-12" />
       </div>
     </nav>
   );

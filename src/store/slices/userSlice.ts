@@ -1,13 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define the user details type
-interface UserDetails {
+export interface UserDetails {
   id: string;
-  name: string;
+  full_name: string;
   email: string;
+  user_name: string;
+  password: string;
+  postal_code: string;
+  city: string;
+  country: string;
+  permanent_address: string;
+  present_address: string;
+  pfp: string | null;
 }
 
-// Define the initial state
 interface UserState {
   userDetails: UserDetails | null;
 }
@@ -15,26 +21,41 @@ interface UserState {
 const initialState: UserState = {
   userDetails: {
     id: "123",
-    name: "John Doe",
+    full_name: "John Doe",
     email: "john.doe@example.com",
-  }, // Default user details (optional)
+    user_name: "johndoe",
+    password: "password123",
+    postal_code: "12345",
+    city: "New York",
+    country: "USA",
+    permanent_address: "123 Permanent St.",
+    present_address: "456 Present Ave.",
+    pfp: null,
+  },
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    // Update multiple user details
     editUser: (state, action: PayloadAction<Partial<UserDetails>>) => {
       if (state.userDetails) {
-        // Update only provided fields
         state.userDetails = { ...state.userDetails, ...action.payload };
       }
     },
+    // Update profile picture specifically
+    updateProfilePicture: (state, action: PayloadAction<string>) => {
+      if (state.userDetails) {
+        state.userDetails.pfp = action.payload;
+      }
+    },
+    // Remove user
     removeUser: (state) => {
       state.userDetails = null;
     },
   },
 });
 
-export const { editUser, removeUser } = userSlice.actions;
+export const { editUser, updateProfilePicture, removeUser } = userSlice.actions;
 export default userSlice.reducer;

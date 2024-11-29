@@ -17,13 +17,13 @@ export default function Avatar({
   onClick,
 }: Props) {
   const containerStyle = cn(
-    "flex-shrink-0 h-11 w-11 text-dark-300 font-medium text-sm rounded-full flex items-center justify-center  cursor-pointer bg-background",
+    "flex-shrink-0 overflow-hidden h-12 w-12 text-dark-300 font-medium text-sm rounded-full flex items-center justify-center  cursor-pointer bg-background",
     className
   );
 
   return (
     <div onClick={onClick} className={containerStyle}>
-      {img && <img className="w-full h-full object-cover" src={img} />}
+      {img && <img className="w-full  h-full object-cover" src={img} />}
       {label}
       {children}
     </div>

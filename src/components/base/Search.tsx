@@ -24,9 +24,10 @@ export default function Search({ className, onSearch, ...props }: Props) {
       <Input
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        prepend={<img className="w-[1.2rem]" src={SearchIcon} />}
+        prepend={<img src={SearchIcon} />}
         className={cn("bg-background rounded-full px-6", className)}
         placeholder="Search for something"
+        inputMode="search"
         {...props}
       />
     </>
