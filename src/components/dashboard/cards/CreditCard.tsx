@@ -20,20 +20,21 @@ export default function CreditCard({
   isActive,
   cardHolderName,
   expiryDate,
+  cardNumber,
   balance,
 }: CreditCards) {
   const cardClass = cn(
     isActive
       ? "card-gradient text-white/80"
       : "text-dark-200 bg-white border border-outline",
-    "min-w-[350px] h-[235px] rounded-[25px] flex flex-col gap-4"
+    "min-w-[350px] h-[235px] rounded-[25px] flex flex-col justify-between gap-4"
   );
 
   const textColor = isActive ? "text-white" : "text-dark-300";
 
   return (
     <div className={cardClass}>
-      <div className="flex items-center justify-between p-6 ">
+      <div className="flex items-center justify-between px-6 pt-6 ">
         <div className="flex flex-col">
           <span className="text-xs">Balance</span>
           <h3 className={cn(textColor, "text-xl font-semibold")}>
@@ -60,9 +61,16 @@ export default function CreditCard({
         </div>
       </div>
 
-      <div>
-        <span></span>
-        <span></span>
+      <div
+        className={cn(
+          isActive ? "bg-white/20" : "border-t border-outline",
+          "p-6 flex items-center gap-4 justify-between"
+        )}
+      >
+        <h2 className="text-xl font-semibold">{cardNumber}</h2>
+        <span className="flex-shrink-0">
+          <img className="w-10" src={isActive ? CardMarkLight : CardMarkDark} />
+        </span>
       </div>
     </div>
   );
