@@ -5,11 +5,6 @@ import { cn } from "@/lib/utils";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-
 import { useUser } from "@/hooks/useUser";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
