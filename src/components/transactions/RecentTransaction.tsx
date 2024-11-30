@@ -3,20 +3,29 @@ import Heading from "@/components/typography/Heading";
 import { cn } from "@/lib/utils";
 import TransactionCard from "./TransactionCard";
 import { TransactionLoading } from "./TransactionLoading";
-import { useTransaction } from "@/hooks/useTransaction";
-import { useEffect } from "react";
 import Show from "../base/Show";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setTransactionState } from "@/store/slices/transactionSlice";
+import { Transaction } from "@/types";
+import { getTransactions } from "@/lib/api/transaction";
+import { useQuery } from "@/hooks/useQuery";
 
 interface Props {
   className?: string;
 }
 
 export default function RecentTransaction({ className }: Props) {
-  const { transactions, loading, fetchTransaction } = useTransaction();
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    fetchTransaction();
-  }, []);
+  const transactions = useAppSelector(
+    (state) => state.transaction.transactions
+  );
+
+  const { loading } = useQuery<Transaction[]>(getTransactions, [], {
+    onSuccess: (data) => {
+      dispatch(setTransactionState({ transactions: data }));
+    },
+  });
 
   return (
     <div className={cn("space-y-4", className)}>

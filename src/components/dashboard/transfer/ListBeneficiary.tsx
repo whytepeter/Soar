@@ -6,17 +6,30 @@ import {
 } from "@/components/ui/carousel";
 
 import Beneficiary from "./Beneficiary";
-import { useTransaction } from "@/hooks/useTransaction";
 import Show from "@/components/base/Show";
 import BeneficiaryLoading from "./BeneficiaryLoading";
-import { useEffect } from "react";
+
+import { useState } from "react";
+import { UserDetails } from "@/types";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useQuery } from "@/hooks/useQuery";
+import { getBeneficiary } from "@/lib/api/transaction";
+import { setTransactionState } from "@/store/slices/transactionSlice";
 
 export default function ListBeneficiary() {
-  const { beneficiaries, loading, fetchBeneficiaries } = useTransaction();
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    fetchBeneficiaries();
-  }, []);
+  const beneficiaries = useAppSelector(
+    (state) => state.transaction.beneficiaries
+  );
+
+  const [selected, setSelected] = useState<UserDetails | null>(null);
+
+  const { loading } = useQuery<UserDetails[]>(getBeneficiary, [], {
+    onSuccess: (data) => {
+      dispatch(setTransactionState({ beneficiaries: data }));
+    },
+  });
 
   return (
     <div className="relative ">
@@ -31,12 +44,16 @@ export default function ListBeneficiary() {
         <Show.Else>
           <Carousel className="w-full xl:max-w-md ">
             <CarouselContent className="pl-2  ">
-              {beneficiaries?.map((benf, index) => (
+              {beneficiaries?.map((benf) => (
                 <CarouselItem
-                  key={index}
-                  className="pl-2 basis-1/3 md:basis-1/4 xl:basis-1/3 "
+                  key={benf.id}
+                  className="pl-2 basis-1/3 md:basis-1/4 lg:basis-1/3 "
                 >
-                  <Beneficiary {...benf} />
+                  <Beneficiary
+                    onClick={() => setSelected(benf)}
+                    selected={selected?.id == benf.id}
+                    beneficiary={benf}
+                  />
                 </CarouselItem>
               ))}
             </CarouselContent>

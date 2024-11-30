@@ -15,11 +15,14 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EditProfileSchema } from "@/schema/settings";
 import { COUNTRIES } from "@/lib/constant";
-import { useUser } from "@/hooks/useUser";
+import { updateUser } from "@/lib/api/user";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { editUser } from "@/store/slices/userSlice";
 
 export default function EditProfile() {
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user.userDetails);
   const [loading, setLoading] = useState(false);
-  const { user, updateUserDetails } = useUser();
 
   const form = useForm<z.infer<typeof EditProfileSchema>>({
     resolver: zodResolver(EditProfileSchema),
@@ -62,7 +65,11 @@ export default function EditProfile() {
   async function onSubmit(values: z.infer<typeof EditProfileSchema>) {
     try {
       setLoading(true);
-      await updateUserDetails(values);
+      const res = await updateUser(values);
+      if (res.success) {
+        dispatch(editUser(res.data));
+        toast.success("Profile updated successfully");
+      }
     } catch (error: any) {
       toast.error(error?.message || "Error occured");
     } finally {

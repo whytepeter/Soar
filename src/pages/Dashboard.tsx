@@ -17,8 +17,8 @@ export default function Dashboard() {
         <ExpenseStats className="col-span-12 lg:col-span-5  xl:col-span-4" />
       </div>
       <div className="grid grid-cols-12 gap-6">
-        <QuickTransfer className="col-span-12   xl:col-span-5" />
-        <BalanceHistory className="col-span-12   xl:col-span-7" />
+        <QuickTransfer className="col-span-12   lg:col-span-5" />
+        <BalanceHistory className="col-span-12   lg:col-span-7" />
       </div>
     </main>
   );

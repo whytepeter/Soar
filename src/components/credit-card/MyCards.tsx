@@ -5,23 +5,30 @@ import { cn } from "@/lib/utils";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { useUser } from "@/hooks/useUser";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "@/router/type";
 import CardLoading from "./CardLoading";
 import Show from "../base/Show";
+import { useQuery } from "@/hooks/useQuery";
+import { CreditCards } from "@/types";
+import { getUserCards } from "@/lib/api/cards";
+import { setUserState } from "@/store/slices/userSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 
 interface Props {
   className?: string;
 }
 
 export default function ListCreditCards({ className }: Props) {
-  const { cards, fetchUserCards, loading } = useUser();
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    fetchUserCards();
-  }, []);
+  const cards = useAppSelector((state) => state.user.cards);
+
+  const { loading } = useQuery<CreditCards[]>(getUserCards, [], {
+    onSuccess: (data) => {
+      dispatch(setUserState({ cards: data }));
+    },
+  });
 
   return (
     <div className={cn("space-y-4", className)}>
@@ -58,7 +65,7 @@ export default function ListCreditCards({ className }: Props) {
           >
             {cards?.map((card, index) => (
               <SwiperSlide key={index}>
-                <CreditCard {...card} />
+                <CreditCard loading={loading} card={card} />
               </SwiperSlide>
             ))}
           </Swiper>

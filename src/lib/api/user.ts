@@ -4,7 +4,7 @@ import { USER } from "../db";
 // Mock API to update user information
 export const updateUser = async (
   userData: Partial<UserDetails>
-): Promise<{ success: boolean; data: Record<string, any> }> => {
+): Promise<{ success: boolean; data: Partial<UserDetails> }> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       // Mock successful update

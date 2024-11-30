@@ -1,26 +1,46 @@
 import Avatar from "@/components/base/Avatar";
 
-import { initials } from "@/lib/utils";
+import { cn, initials } from "@/lib/utils";
 import { UserDetails } from "@/types";
 
-export default function Beneficiary({ full_name, jobTitle, pfp }: UserDetails) {
+type Props = {
+  beneficiary: UserDetails;
+  selected?: boolean;
+  onClick?: () => void;
+};
+
+export default function Beneficiary({ beneficiary, selected, onClick }: Props) {
   return (
-    <div className="flex flex-col  rounded-xl items-center mx-auto gap-1">
+    <div
+      onClick={onClick}
+      className="cursor-pointer flex flex-col  rounded-xl items-center mx-auto gap-1"
+    >
       <Avatar className="w-16 h-16">
-        {pfp ? (
+        {beneficiary?.pfp ? (
           <img
-            src={pfp}
+            src={beneficiary?.pfp}
             className="w-full h-full object-cover"
-            alt={full_name}
+            alt={beneficiary?.full_name}
           />
         ) : (
-          <span className="font-semibold text-lg">{initials(full_name)}</span>
+          <span className="font-semibold text-lg">
+            {initials(beneficiary?.full_name)}
+          </span>
         )}
       </Avatar>
 
-      <div className="flex flex-col items-center w-fit">
-        <h4 className="text-dark text-sm md:text-base">{full_name}</h4>
-        <span className="text-dark-200 text-xs sm:text-sm">{jobTitle}</span>
+      <div
+        className={cn(
+          "flex flex-col items-center w-fit",
+          selected ? "font-semibold" : "font-light md:font-normal"
+        )}
+      >
+        <h4 className="text-dark text-sm md:text-base ">
+          {beneficiary?.full_name}
+        </h4>
+        <span className="text-dark-200 text-xs sm:text-sm">
+          {beneficiary?.jobTitle}
+        </span>
       </div>
     </div>
   );

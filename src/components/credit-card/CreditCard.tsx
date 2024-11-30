@@ -6,14 +6,16 @@ import CardMarkLight from "@/assets/icon/card-mark-light.svg";
 import CardChipDark from "@/assets/img/card-chip-dark.png";
 import CardChipLight from "@/assets/img/card-chip-light.png";
 import { CreditCards } from "@/types";
+import Spinner from "../base/Spinner";
 
-export default function CreditCard({
-  isActive,
-  cardHolderName,
-  expiryDate,
-  cardNumber,
-  balance,
-}: CreditCards) {
+interface Props {
+  loading?: boolean;
+  card: CreditCards;
+}
+
+export default function CreditCard({ loading, card }: Props) {
+  const { isActive, cardHolderName, expiryDate, cardNumber, balance } = card;
+
   const cardClass = cn(
     isActive
       ? "card-gradient text-white/80"
@@ -28,9 +30,13 @@ export default function CreditCard({
       <div className="flex items-center justify-between px-6 pt-6 ">
         <div className="flex flex-col">
           <span className="text-xs">Balance</span>
-          <h3 className={cn(textColor, "text-xl font-semibold")}>
-            {formatCurrency(balance)}
-          </h3>
+          {loading ? (
+            <Spinner color={isActive ? "#fff" : "#000"} />
+          ) : (
+            <h3 className={cn(textColor, "text-xl font-semibold")}>
+              {formatCurrency(balance)}
+            </h3>
+          )}
         </div>
         <span className="flex-shrink-0">
           <img className="w-10" src={isActive ? CardChipLight : CardChipDark} />

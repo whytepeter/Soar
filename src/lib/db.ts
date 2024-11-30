@@ -8,7 +8,7 @@ import ben5 from "@/assets/img/benf-5.png";
 
 export const BENEFICIARY: UserDetails[] = [
   {
-    id: "123",
+    id: "1",
     full_name: "Livia Bator",
     email: "liviabator@example.com",
     user_name: "liviabator",
@@ -23,7 +23,7 @@ export const BENEFICIARY: UserDetails[] = [
     pfp: ben1,
   },
   {
-    id: "123",
+    id: "2",
     full_name: "Randy Press",
     email: "randypress@example.com",
     user_name: "randypress",
@@ -38,7 +38,7 @@ export const BENEFICIARY: UserDetails[] = [
     pfp: ben2,
   },
   {
-    id: "123",
+    id: "3",
 
     full_name: "James Bornwell",
     email: "jamesbwell@example.com",
@@ -54,7 +54,7 @@ export const BENEFICIARY: UserDetails[] = [
     pfp: ben3,
   },
   {
-    id: "123",
+    id: "4",
     full_name: "Workman",
     email: "workman@example.com",
     user_name: "workman",
@@ -69,7 +69,7 @@ export const BENEFICIARY: UserDetails[] = [
     pfp: ben4,
   },
   {
-    id: "123",
+    id: "5",
     full_name: "Fill Romanus",
     email: "romanusfill@example.com",
     user_name: "romanusfill",
@@ -179,7 +179,7 @@ export const TRANSACTIONS: Transaction[] = [
 ];
 
 export const USER: UserDetails = {
-  id: "123",
+  id: "1",
   full_name: "John Doe",
   email: "john.doe@example.com",
   user_name: "johndoe",
