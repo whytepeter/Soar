@@ -11,15 +11,19 @@ import {
 
 export default function Users() {
   return (
-    <div className="border">
-      <Carousel>
-        <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
+    <div className="relative">
+      <Carousel
+        opts={{
+          align: "start",
+        }}
+      >
+        <CarouselContent className="">
+          {Array.from({ length: 7 }).map((_, index) => (
             <CarouselItem
               key={index}
-              className="pl-1 md:basis-1/2 lg:basis-1/3"
+              className="pl-1 md:basis-1/2 lg:basis-1/4 border"
             >
-              <div className="flex flex-col  items-center w-fit gap-1">
+              <div className="flex flex-col  rounded-xl items-center w-fit gap-1">
                 <Avatar className="w-16 h-16" img={UserAvatar} />
                 <div className="flex flex-col items-center w-fit">
                   <h4 className="text-dark text-sm md:text-base">
@@ -31,8 +35,8 @@ export default function Users() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselNext />
-        <CarouselPrevious />
+        <CarouselNext className="!absolute h-10 w-10 !top-1/2 !-translate-y-1/2 !right-4" />
+        <CarouselPrevious className="!absolute h-10 w-10 !top-1/2 !-translate-y-1/2 !left-2" />
       </Carousel>
     </div>
   );
