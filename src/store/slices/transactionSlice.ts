@@ -1,10 +1,10 @@
-import { Transaction, UserDetails } from "@/types";
+import { ExpenseStatistic, Transaction, UserDetails } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TransactionState {
   transactions: Transaction[];
   activities: string[];
-  expenseStats: any;
+  expenseStats: ExpenseStatistic[];
   balanceHistory: string[];
   beneficiaries: UserDetails[];
 }
@@ -12,7 +12,7 @@ interface TransactionState {
 const initialState: TransactionState = {
   transactions: [],
   activities: [],
-  expenseStats: {},
+  expenseStats: [],
   balanceHistory: [],
   beneficiaries: [],
 };

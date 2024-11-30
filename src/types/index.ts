@@ -33,3 +33,8 @@ export interface Transaction {
   type: "CREDIT" | "DEBIT";
   amount: number;
 }
+
+export interface ExpenseStatistic {
+  category: string;
+  percentage: number;
+}
