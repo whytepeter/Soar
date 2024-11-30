@@ -41,6 +41,9 @@ export default function Activity({ className }: Props) {
       },
       yaxis: {
         labels: {
+          formatter(val) {
+            return val?.toLocaleString();
+          },
           style: {
             colors: "#718EBF",
             fontSize: "12px",
