@@ -1,4 +1,9 @@
-import { Transaction, UserDetails } from "@/types";
+import {
+  ActivityType,
+  BalanceHistoryType,
+  Transaction,
+  UserDetails,
+} from "@/types";
 import { getRandomValue } from "../utils";
 import { BENEFICIARY, TRANSACTIONS } from "../db";
 
@@ -48,17 +53,9 @@ export const getBeneficiary = async (): Promise<{
 // Mock API for daily transaction data for the current week
 export const getActivitiesChart = async (): Promise<{
   success: boolean;
-  data: { day: string; deposit: number; withdrawal: number }[];
+  data: ActivityType[];
 }> => {
-  const daysOfWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
+  const daysOfWeek = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
 
   const data = daysOfWeek.map((day) => ({
     day,
@@ -76,21 +73,21 @@ export const getActivitiesChart = async (): Promise<{
 // Mock API for monthly balance history for the current year
 export const getBalanceHistory = async (): Promise<{
   success: boolean;
-  data: { month: string; balance: number }[];
+  data: BalanceHistoryType[];
 }> => {
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   const currentMonth = new Date().getMonth() + 1; // 0-based month

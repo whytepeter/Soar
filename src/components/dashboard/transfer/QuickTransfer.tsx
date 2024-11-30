@@ -16,7 +16,7 @@ export default function QuickTransfer({ className }: Props) {
   return (
     <div className={cn("space-y-4", className)}>
       <Heading>Quick Transfer</Heading>
-      <Card className="space-y-6">
+      <Card className="space-y-8 !py-8">
         <ListBeneficiary />
 
         <div className="text-dark-200 flex items-center gap-4 text-sm ">
