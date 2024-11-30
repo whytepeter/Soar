@@ -32,7 +32,7 @@ export default function AppNavbar({ className }: Props) {
   );
 
   const navbarClass = cn(
-    "sticky bg-white border-b border-outline left-0 top-0 w-full z-30 bg-white  p-4 md:px-6 flex gap-4 items-center justify-between",
+    "sticky bg-white md:border-b border-outline left-0 top-0 w-full z-30 bg-white  p-4 md:px-6 flex flex-col gap-4",
     className
   );
 
@@ -43,29 +43,35 @@ export default function AppNavbar({ className }: Props) {
 
   return (
     <nav className={navbarClass}>
-      <Button
-        size="icon"
-        variant="ghost"
-        onClick={() => dispatch(toggleSidebar())}
-        className="flex md:hidden"
-      >
-        <img src={Hamburger} alt="Menu" />
-      </Button>
-      <Heading className="text-lg md:text-xl">{currentPage}</Heading>
+      <div className="flex gap-4 items-center justify-between">
+        <Button
+          size="icon"
+          variant="ghost"
+          onClick={() => dispatch(toggleSidebar())}
+          className="flex md:hidden"
+        >
+          <img src={Hamburger} alt="Menu" />
+        </Button>
+        <Heading className="text-lg md:text-xl">{currentPage}</Heading>
 
-      <div className="flex items-center gap-4 ">
-        <div className="hidden md:flex items-center gap-4 ">
-          <Search onSearch={handleSearch} />
+        <div className="flex items-center gap-4 ">
+          <div className="hidden md:flex items-center gap-4 ">
+            <Search onSearch={handleSearch} />
 
-          <Avatar onClick={() => navigate(ROUTES.Settings)}>
-            <img src={Setting} alt="Settings" loading="lazy" />
-          </Avatar>
-          <Avatar>
-            <img src={Notification} alt="notification" />
-          </Avatar>
+            <Avatar onClick={() => navigate(ROUTES.Settings)}>
+              <img src={Setting} alt="Settings" loading="lazy" />
+            </Avatar>
+            <Avatar>
+              <img src={Notification} alt="notification" />
+            </Avatar>
+          </div>
+
+          <UserProfile className="w-12 h-12" />
         </div>
+      </div>
 
-        <UserProfile className="w-12 h-12" />
+      <div className="md:hidden  ">
+        <Search onSearch={handleSearch} />
       </div>
     </nav>
   );

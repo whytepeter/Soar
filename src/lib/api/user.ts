@@ -1,19 +1,5 @@
 import { UserDetails } from "@/types";
-
-const mockUserDatabase: UserDetails = {
-  id: "123",
-  full_name: "John Doe",
-  email: "john.doe@example.com",
-  user_name: "johndoe",
-  password: "password123",
-  postal_code: "12345",
-  city: "New York",
-  dob: "2000-11-21",
-  country: "United States of America",
-  permanent_address: "123 Permanent St.",
-  present_address: "456 Present Ave.",
-  pfp: null,
-};
+import { USER } from "../db";
 
 // Mock API to update user information
 export const updateUser = async (
@@ -47,10 +33,10 @@ export const getUser = async (): Promise<{
 }> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (mockUserDatabase) {
+      if (USER) {
         resolve({
           success: true,
-          data: { ...mockUserDatabase },
+          data: { ...USER },
         });
       } else {
         reject({

@@ -12,7 +12,7 @@ export default function card({ children, className, loading }: Props) {
   return (
     <div
       className={cn(
-        "bg-white p-4 rounded-3xl overflow-hidden relative",
+        "bg-white p-4 md:p-6 rounded-3xl overflow-hidden relative",
         className
       )}
     >

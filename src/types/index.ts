@@ -8,6 +8,7 @@ export interface UserDetails {
   dob: string;
   city: string;
   country: string;
+  jobTitle: string;
   permanent_address: string;
   present_address: string;
   pfp: string | null;

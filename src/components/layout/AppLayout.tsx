@@ -15,7 +15,7 @@ export default function AppLayout() {
   const sidebarCollapsed = useAppSelector(
     (state) => state.config.sidebarCollapsed
   );
-  const { lg: isMedium } = useBreakpoint();
+  const { xl: isMedium } = useBreakpoint();
 
   useEffect(() => {
     dispatch(setSidebarState(isMedium));
@@ -26,7 +26,7 @@ export default function AppLayout() {
       <main
         className={`${
           sidebarCollapsed ? "collapsed" : ""
-        } admin-layout bg-background z-30 transition-all ease-in-out duration-200 min-h-screen relative`}
+        } admin-layout bg-white md:bg-background z-30 transition-all ease-in-out duration-200 min-h-screen relative`}
       >
         <AppSidebar />
         <div className="relative min-h-screen">

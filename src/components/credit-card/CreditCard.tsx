@@ -18,7 +18,7 @@ export default function CreditCard({
     isActive
       ? "card-gradient text-white/80"
       : "text-dark-200 bg-white border border-outline",
-    "w-full min-w-[350px] h-[235px] rounded-[25px] flex flex-col justify-between gap-4 mx-auto md:mx-0"
+    "w-full aspect-[6/4] h-[200px] md:h-[235px] rounded-[25px] flex flex-col justify-between gap-4 mx-auto md:mx-0"
   );
 
   const textColor = isActive ? "text-white" : "text-dark-300";
@@ -60,7 +60,7 @@ export default function CreditCard({
           "p-6 flex items-center gap-4 justify-between"
         )}
       >
-        <h2 className="text-xl lg:text-2xl font-semibold">
+        <h2 className="text-lg lg:text-xl xl:text-2xl truncate font-semibold">
           {maskCreditCardNumber(cardNumber)}
         </h2>
         <span className="flex-shrink-0">

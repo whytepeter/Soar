@@ -1,4 +1,4 @@
-import { Transaction } from "@/types";
+import { Transaction, UserDetails } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TransactionState {
@@ -6,6 +6,7 @@ interface TransactionState {
   activities: string[];
   expenseStats: any;
   balanceHistory: string[];
+  beneficiaries: UserDetails[];
 }
 
 const initialState: TransactionState = {
@@ -13,6 +14,7 @@ const initialState: TransactionState = {
   activities: [],
   expenseStats: {},
   balanceHistory: [],
+  beneficiaries: [],
 };
 
 const userSlice = createSlice({

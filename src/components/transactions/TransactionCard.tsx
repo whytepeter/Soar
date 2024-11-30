@@ -22,17 +22,26 @@ export default function TransactionCard({
   const methodIcon = METHODS[method] || METHODS.TRANSFER;
 
   return (
-    <div className="px-4 py-2 flex items-center gap-4">
-      <Avatar className="w-14 h-14" img={methodIcon}></Avatar>
-      <div className="flex-1 flex flex-col">
-        <span className="line-clamp-2 text-dark ">Deposit from card </span>
-        <span className="text-dark-200 text-sm">
-          {formatDate(new Date(), "DD MMMM YYYY")}
-        </span>
+    <div className="py-2 grid grid-cols-9 gap-2 ">
+      <div className="col-span-7 flex items-center gap-4">
+        <Avatar className="w-14 h-14 col-span-2" img={methodIcon}></Avatar>
+
+        <div className="flex-1 flex flex-col col-span-5 truncate">
+          <span className="truncate text-dark ">{description} </span>
+          <span className="text-dark-200 text-sm">
+            {formatDate(createdAt, "DD MMMM YYYY")}
+          </span>
+        </div>
       </div>
-      <div className={cn(type === "CREDIT" ? "text-success" : "text-error")}>
+
+      <div
+        className={cn(
+          type === "CREDIT" ? "text-success" : "text-error",
+          "col-span-2 text-right"
+        )}
+      >
         <span>{type === "CREDIT" ? "+" : "-"}</span>
-        {formatCurrency(850)}
+        {formatCurrency(amount)}
       </div>
     </div>
   );
