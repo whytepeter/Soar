@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
 
 import ListCreditCards from "@/components/credit-card/MyCards";
-
 import RecentTransaction from "@/components/transactions/RecentTransaction";
 import QuickTransfer from "@/components/dashboard/transfer/QuickTransfer";
+
 import ExpenseChartLoader from "@/components/dashboard/ExpenseCat/ExpenseChartLoader";
 import ActivityLoader from "@/components/dashboard/Activity/ActivityLoader";
 import BalanceLoader from "@/components/dashboard/BalanceHistory/BalanceLoader";
