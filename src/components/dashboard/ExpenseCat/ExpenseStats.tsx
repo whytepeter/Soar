@@ -56,11 +56,9 @@ export default function ExpenseStats({ className = "" }: Props) {
       plotOptions: {
         polarArea: {
           rings: {
-            strokeWidth: 0,
             strokeColor: "transparent",
           },
           spokes: {
-            strokeWidth: 0,
             connectorColors: "transparent",
           },
         },

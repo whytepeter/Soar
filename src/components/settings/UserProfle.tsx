@@ -11,9 +11,14 @@ import { editUser } from "@/store/slices/userSlice";
 interface Props {
   edit?: boolean;
   className?: string;
+  onClick?: () => void;
 }
 
-export default function UserProfile({ edit = false, className }: Props) {
+export default function UserProfile({
+  edit = false,
+  className,
+  onClick,
+}: Props) {
   const dispatch = useAppDispatch();
   const userDetails = useAppSelector((state) => state.user.userDetails);
 
@@ -31,7 +36,7 @@ export default function UserProfile({ edit = false, className }: Props) {
 
   return (
     <>
-      <div className="w-fit relative ">
+      <div onClick={onClick} className="w-fit relative ">
         <Avatar className={cn("w-20 h-20  ", className)}>
           {userDetails?.pfp ? (
             <img
