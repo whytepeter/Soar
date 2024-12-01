@@ -41,9 +41,12 @@ export default function ExpenseStats({ className = "" }: Props) {
       },
       dataLabels: {
         enabled: true,
-        formatter: (val) => `${val}%`,
+        formatter: (val, opts) => {
+          const category = data?.[opts.seriesIndex]?.category || "";
+          return `${category}: ${val}%`;
+        },
         style: {
-          fontSize: "16px",
+          fontSize: "12px",
         },
 
         dropShadow: {

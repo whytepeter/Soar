@@ -5,7 +5,7 @@ import useEmblaCarousel, {
 import ArrowIcon from "@/assets/icon/arrow.svg";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/base/Button";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;

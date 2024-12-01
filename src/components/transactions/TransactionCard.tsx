@@ -24,7 +24,11 @@ export default function TransactionCard({
   return (
     <div className="py-2 grid grid-cols-9 gap-2 ">
       <div className="col-span-7 flex items-center gap-4">
-        <Avatar className="w-14 h-14 col-span-2" img={methodIcon}></Avatar>
+        <Avatar
+          className="w-14 h-14 col-span-2"
+          alt="icon"
+          img={methodIcon}
+        ></Avatar>
 
         <div className="flex-1 flex flex-col col-span-5 truncate">
           <span className="truncate text-dark ">{description} </span>

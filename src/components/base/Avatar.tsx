@@ -6,6 +6,7 @@ interface Props {
   children?: ReactNode;
   label?: string;
   img?: string;
+  alt?: string;
   onClick?: () => void;
 }
 
@@ -14,6 +15,7 @@ export default function Avatar({
   children,
   label,
   img,
+  alt = "avatar",
   onClick,
 }: Props) {
   const containerStyle = cn(
@@ -22,9 +24,11 @@ export default function Avatar({
   );
 
   return (
-    <div onClick={onClick} className={containerStyle}>
-      {img && <img className="w-full  h-full object-cover" src={img} />}
-      {label}
+    <div aria-label={label || alt} onClick={onClick} className={containerStyle}>
+      {img && (
+        <img className="w-full  h-full object-cover" src={img} alt={alt} />
+      )}
+      {label && <span className="sr-only">{label}</span>}
       {children}
     </div>
   );
