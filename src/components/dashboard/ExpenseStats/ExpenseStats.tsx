@@ -70,12 +70,14 @@ export default function ExpenseStats({ className = "" }: Props) {
             <ExpenseChartLoader />
           </Show.When>
           <Show.When isTrue={!!data?.length}>
-            <Chart
-              options={chartOptions}
-              series={chartSeries}
-              type="pie"
-              width="350"
-            />
+            <div className="mx-auto w-fit">
+              <Chart
+                options={chartOptions}
+                series={chartSeries}
+                type="pie"
+                width="350"
+              />
+            </div>
           </Show.When>
           <Show.Else>
             <p className="text-center text-dark-200 text-sm">

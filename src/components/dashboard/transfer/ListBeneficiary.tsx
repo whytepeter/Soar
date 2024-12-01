@@ -42,7 +42,7 @@ export default function ListBeneficiary() {
           </div>
         </Show.When>
         <Show.Else>
-          <Carousel className="w-full xl:max-w-md ">
+          <Carousel className="w-full  ">
             <CarouselContent className="pl-2  ">
               {beneficiaries?.map((benf) => (
                 <CarouselItem
@@ -57,7 +57,7 @@ export default function ListBeneficiary() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselNext className="!absolute border-none shadow-md h-10 w-10 !top-1/2 !-translate-y-1/2 !right-0" />
+            <CarouselNext className="!absolute border-none shadow-md h-12 w-12 !top-1/2 !-translate-y-1/2 right-0 " />
           </Carousel>
         </Show.Else>
       </Show>

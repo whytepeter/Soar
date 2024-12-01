@@ -38,3 +38,14 @@ export interface ExpenseStatistic {
   category: string;
   percentage: number;
 }
+
+export interface ActivityType {
+  day: string;
+  deposit: number;
+  withdrawal: number;
+}
+
+export interface BalanceHistoryType {
+  month: string;
+  balance: number;
+}

@@ -35,7 +35,7 @@ export default function Beneficiary({ beneficiary, selected, onClick }: Props) {
           selected ? "font-semibold" : "font-light md:font-normal"
         )}
       >
-        <h4 className="text-dark text-sm md:text-base ">
+        <h4 className="text-dark text-sm md:text-base whitespace-nowrap ">
           {beneficiary?.full_name}
         </h4>
         <span className="text-dark-200 text-xs sm:text-sm">
