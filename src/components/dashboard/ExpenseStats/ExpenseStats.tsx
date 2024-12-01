@@ -38,6 +38,7 @@ export default function ExpenseStats({ className = "" }: Props) {
           fontSize: "16px",
         },
       },
+
       responsive: [
         {
           breakpoint: 768,
