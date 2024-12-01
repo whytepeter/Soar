@@ -35,7 +35,6 @@ export default function ExpenseStats({ className = "" }: Props) {
       fill: {
         opacity: 1,
       },
-
       legend: {
         show: false,
       },
@@ -51,6 +50,19 @@ export default function ExpenseStats({ className = "" }: Props) {
 
         dropShadow: {
           enabled: false,
+        },
+      },
+
+      plotOptions: {
+        polarArea: {
+          rings: {
+            strokeWidth: 0,
+            strokeColor: "transparent",
+          },
+          spokes: {
+            strokeWidth: 0,
+            connectorColors: "transparent",
+          },
         },
       },
 
