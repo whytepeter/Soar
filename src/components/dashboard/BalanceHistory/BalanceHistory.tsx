@@ -36,7 +36,7 @@ export default function BalanceHistory({ className }: Props) {
       },
       colors: ["#396AFF"],
       xaxis: {
-        categories: data?.map((item) => item.month) || [],
+        categories: data?.map((el) => el.month) || [],
         labels: {
           style: {
             colors: "#718EBF",
@@ -47,7 +47,7 @@ export default function BalanceHistory({ className }: Props) {
       yaxis: {
         labels: {
           formatter(val) {
-            return val?.toLocaleString();
+            return val?.toLocaleString() ?? "";
           },
           style: {
             colors: "#718EBF",
@@ -79,7 +79,7 @@ export default function BalanceHistory({ className }: Props) {
     () => [
       {
         name: "Balance",
-        data: data?.map((item) => item.balance) || [],
+        data: data?.map((el) => el.balance) || [],
       },
     ],
     [data]
@@ -93,7 +93,7 @@ export default function BalanceHistory({ className }: Props) {
           <Show.When isTrue={loading && !data?.length}>
             <BalanceLoader />
           </Show.When>
-          <Show.When isTrue={!!data?.length}>
+          <Show.When isTrue={!loading}>
             <Chart
               options={chartOptions}
               series={chartSeries}
@@ -101,11 +101,6 @@ export default function BalanceHistory({ className }: Props) {
               height="250"
             />
           </Show.When>
-          <Show.Else>
-            <p className="text-center text-dark-200 text-sm">
-              No data available
-            </p>
-          </Show.Else>
         </Show>
       </Card>
     </div>

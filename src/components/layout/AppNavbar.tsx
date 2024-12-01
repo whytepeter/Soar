@@ -3,7 +3,7 @@ import { toggleSidebar } from "@/store/slices/configSlice";
 import { cn } from "@/lib/utils";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/router/type";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 import Hamburger from "@/assets/icon/hamburger.svg";
 import Setting from "@/assets/icon/settings-2.svg";
@@ -24,12 +24,20 @@ export default function AppNavbar({ className }: Props) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const basePath = location.pathname.split("/")[1]; // Takes the first part of the URL
+  const currentPage = useMemo(() => {
+    const basePath = location.pathname.split("/")[1];
 
-  // Map the base path to the corresponding route
-  const currentPage = Object.keys(ROUTES).find((key) =>
-    ROUTES[key as keyof typeof ROUTES].includes(basePath)
-  );
+    if (basePath === "") {
+      return "Overview";
+    }
+
+    // Map the base path to the corresponding route dynamically
+    return (
+      Object.keys(ROUTES).find((key) =>
+        ROUTES[key as keyof typeof ROUTES].includes(basePath)
+      ) || "Dashboard"
+    );
+  }, [location.pathname]);
 
   const navbarClass = cn(
     "sticky bg-white md:border-b border-outline left-0 top-0 w-full z-30 bg-white  p-4 md:px-6 flex flex-col gap-4",

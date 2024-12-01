@@ -55,7 +55,7 @@ export default function Activity({ className }: Props) {
         bar: {
           horizontal: false,
           columnWidth: "40%",
-          borderRadius: isMobile ? 4 : 10,
+          borderRadius: isMobile ? 4 : 9,
           endingShape: "rounded",
         },
       },
@@ -74,6 +74,7 @@ export default function Activity({ className }: Props) {
         position: "top",
         horizontalAlign: "right",
         fontSize: "16px",
+        fontWeight: 300,
         markers: {
           shape: "circle",
         },

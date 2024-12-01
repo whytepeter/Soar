@@ -21,13 +21,21 @@ export default function ExpenseStats({ className = "" }: Props) {
   const chartOptions: ApexOptions = useMemo(
     () => ({
       chart: {
-        type: "pie",
+        type: "polarArea",
+        height: "300",
       },
       labels: data?.map((item) => item.category) || [],
       colors: ["#343C6A", "#396AFF", "#FC7900", "#232323"],
       stroke: {
-        width: 4,
+        show: false,
       },
+      yaxis: {
+        show: false,
+      },
+      fill: {
+        opacity: 1,
+      },
+
       legend: {
         show: false,
       },
@@ -36,6 +44,10 @@ export default function ExpenseStats({ className = "" }: Props) {
         formatter: (val) => `${val}%`,
         style: {
           fontSize: "16px",
+        },
+
+        dropShadow: {
+          enabled: false,
         },
       },
 
@@ -74,15 +86,17 @@ export default function ExpenseStats({ className = "" }: Props) {
               <Chart
                 options={chartOptions}
                 series={chartSeries}
-                type="pie"
+                type="polarArea"
                 width="350"
               />
             </div>
           </Show.When>
           <Show.Else>
-            <p className="text-center text-dark-200 text-sm">
-              No data available
-            </p>
+            <div className="sm:h-[300px] flex items-center justify-center">
+              <p className="text-center text-dark-200 text-sm">
+                No data available
+              </p>
+            </div>
           </Show.Else>
         </Show>
       </Card>
