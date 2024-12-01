@@ -39,7 +39,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputType>(
         <PopoverTrigger asChild>
           <Input
             ref={ref}
-            type="date"
+            type="text"
             {...props}
             value={value}
             appendClick={() => setOpen(true)}
