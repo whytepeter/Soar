@@ -26,18 +26,24 @@ export default function Dashboard() {
         <RecentTransaction className="col-span-12 lg:col-span-5  xl:col-span-4" />
       </div>
       <div className="grid grid-cols-12 gap-6">
-        <Suspense fallback={<ActivityLoader />}>
-          <Activity className="col-span-12 lg:col-span-7  xl:col-span-8" />
-        </Suspense>
-        <Suspense fallback={<ExpenseChartLoader />}>
-          <ExpenseStats className="col-span-12 lg:col-span-5  xl:col-span-4 " />
-        </Suspense>
+        <div className="col-span-12 lg:col-span-7  xl:col-span-8">
+          <Suspense fallback={<ActivityLoader />}>
+            <Activity />
+          </Suspense>
+        </div>
+        <div className="col-span-12 lg:col-span-5  xl:col-span-4 ">
+          <Suspense fallback={<ExpenseChartLoader />}>
+            <ExpenseStats />
+          </Suspense>
+        </div>
       </div>
       <div className="grid grid-cols-12 gap-6">
         <QuickTransfer className="col-span-12   lg:col-span-5" />
-        <Suspense fallback={<BalanceLoader />}>
-          <BalanceHistory className="col-span-12   lg:col-span-7" />
-        </Suspense>
+        <div className="col-span-12   lg:col-span-7">
+          <Suspense fallback={<BalanceLoader />}>
+            <BalanceHistory />
+          </Suspense>
+        </div>
       </div>
     </main>
   );
