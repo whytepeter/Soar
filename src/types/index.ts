@@ -49,3 +49,7 @@ export interface BalanceHistoryType {
   month: string;
   balance: number;
 }
+
+export interface IconProps {
+  color: string;
+}

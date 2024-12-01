@@ -3,8 +3,9 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { toggleSidebar } from "@/store/slices/configSlice";
 import AppLogo from "../AppLogo";
-import { SIDEBAR_ITEMS } from "./sidebar";
-import MenuItem from "./MenuItem";
+// import { SIDEBAR_ITEMS } from "./sidebar";
+import SidebarItem from "./SidebarItem";
+import { getSidebarItems, routeConfig } from "@/router";
 
 interface Props {
   className?: string;
@@ -17,6 +18,10 @@ export default function AppSidebar({ className }: Props) {
   const sidebarCollapsed = useAppSelector(
     (state) => state.config.sidebarCollapsed
   );
+
+  // Example usage of `getSidebarItems`
+  const SIDEBAR_ITEMS = getSidebarItems(routeConfig);
+  console.log(SIDEBAR_ITEMS);
 
   const sidebarClass = cn(
     isMobile && !sidebarCollapsed ? "open" : "",
@@ -37,7 +42,7 @@ export default function AppSidebar({ className }: Props) {
           )}
         >
           {SIDEBAR_ITEMS?.map((item, index) => (
-            <MenuItem
+            <SidebarItem
               item={item}
               collapse={sidebarCollapsed}
               key={`sidebar-item-${index}`}

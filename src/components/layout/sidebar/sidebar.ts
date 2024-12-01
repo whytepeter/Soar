@@ -25,7 +25,7 @@ import serviceActiveIcon from "@/assets/icon/service-active.svg";
 import settingsIcon from "@/assets/icon/settings.svg";
 import settingsActiveIcon from "@/assets/icon/settings-active.svg";
 import { ROUTES } from "@/router/type";
-import { MenuItemsType } from "./MenuItem";
+import { MenuItemsType } from "./SidebarItem";
 
 console.log("ROUTES", ROUTES);
 
