@@ -27,7 +27,7 @@ export default function ExpenseStats({ className = "" }: Props) {
       labels: data?.map((item) => item.category) || [],
       colors: ["#343C6A", "#396AFF", "#FC7900", "#232323"],
       stroke: {
-        show: false,
+        colors: ["#fff"],
       },
       yaxis: {
         show: false,

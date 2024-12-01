@@ -11,7 +11,6 @@ import BalanceLoader from "@/components/dashboard/BalanceHistory/BalanceLoader";
 const BalanceHistory = lazy(
   () => import("@/components/dashboard/BalanceHistory/BalanceHistory")
 );
-
 const Activity = lazy(() => import("@/components/dashboard/Activity/Activity"));
 
 const ExpenseStats = lazy(
