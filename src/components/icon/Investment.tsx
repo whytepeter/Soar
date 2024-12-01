@@ -10,7 +10,7 @@ export default function InvestmentIcon({ color }: IconProps) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g clip-path="url(#clip0_13_2618)">
+        <g clipPath="url(#clip0_13_2618)">
           <path
             d="M3.1366 8.1817H0.909362C0.407234 8.1817 0 8.58894 0 9.09106V19.0911C0 19.5928 0.407234 20 0.909362 20H3.1366C3.63872 20 4.04553 19.5928 4.04553 19.0911V9.09106C4.04553 8.58894 3.63872 8.1817 3.1366 8.1817Z"
             fill={color}

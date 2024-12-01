@@ -19,9 +19,7 @@ export default function AppSidebar({ className }: Props) {
     (state) => state.config.sidebarCollapsed
   );
 
-  // Example usage of `getSidebarItems`
   const SIDEBAR_ITEMS = getSidebarItems(routeConfig);
-  console.log(SIDEBAR_ITEMS);
 
   const sidebarClass = cn(
     isMobile && !sidebarCollapsed ? "open" : "",

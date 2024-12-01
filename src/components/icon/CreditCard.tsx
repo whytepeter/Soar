@@ -10,7 +10,7 @@ export default function CreditCardIcon({ color }: IconProps) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g clip-path="url(#clip0_13_2619)">
+        <g clipPath="url(#clip0_13_2619)">
           <path
             d="M18.5453 6.28584V5.99856C18.5453 4.67798 17.4709 3.60358 16.1503 3.60358H2.39498C1.07436 3.60362 0 4.67798 0 5.99856V6.28584H18.5453Z"
             fill={color}
