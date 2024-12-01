@@ -2,8 +2,9 @@ import Heading from "@/components/typography/Heading";
 import CreditCard from "./CreditCard";
 import { cn } from "@/lib/utils";
 
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 import { Link } from "react-router-dom";
 import { ROUTES } from "@/router/type";
@@ -48,7 +49,7 @@ export default function ListCreditCards({ className }: Props) {
         </Show.When>
         <Show.Else>
           <Swiper
-            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            modules={[Pagination]}
             spaceBetween={20}
             slidesPerView={1.2}
             breakpoints={{

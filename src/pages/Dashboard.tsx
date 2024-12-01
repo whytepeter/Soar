@@ -4,7 +4,7 @@ import ListCreditCards from "@/components/credit-card/MyCards";
 
 import RecentTransaction from "@/components/transactions/RecentTransaction";
 import QuickTransfer from "@/components/dashboard/transfer/QuickTransfer";
-import ExpenseChartLoader from "@/components/dashboard/ExpenseStats/ExpenseChartLoader";
+import ExpenseChartLoader from "@/components/dashboard/ExpenseCat/ExpenseChartLoader";
 import ActivityLoader from "@/components/dashboard/Activity/ActivityLoader";
 import BalanceLoader from "@/components/dashboard/BalanceHistory/BalanceLoader";
 
@@ -15,7 +15,7 @@ const BalanceHistory = lazy(
 const Activity = lazy(() => import("@/components/dashboard/Activity/Activity"));
 
 const ExpenseStats = lazy(
-  () => import("@/components/dashboard/ExpenseStats/ExpenseStats")
+  () => import("@/components/dashboard/ExpenseCat/ExpenseStats")
 );
 
 export default function Dashboard() {
