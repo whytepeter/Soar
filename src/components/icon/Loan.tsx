@@ -1,5 +1,4 @@
 import { IconProps } from "@/types";
-import React from "react";
 
 export default function LoanIcon({ color }: IconProps) {
   return (
